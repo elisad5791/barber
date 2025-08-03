@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('timeslots', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('start');
-            $table->timestamp('finish');
+            $table->timestamp('start')->nullable();
+            $table->timestamp('finish')->nullable();
             $table->foreignId('master_id')->constrained();
             $table->foreignId('service_id')->constrained();
             $table->timestamps();
