@@ -16,6 +16,14 @@ return new class extends Migration
             $table->string('title');
             $table->timestamps();
         });
+
+        DB::table('services')->insertOrIgnore([
+            ['title' => 'Женский парикмахер'],
+            ['title' => 'Мужской парикмахер'],
+            ['title' => 'Детский парикмахер'],
+            ['title' => 'Маникюр'],
+            ['title' => 'Педикюр'],
+        ]);
     }
 
     /**
