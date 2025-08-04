@@ -27,7 +27,7 @@
                                     <li class="list-row text-xs uppercase font-semibold opacity-60">Мужской парикмахер
                                     </li>
                                 </ul>
-                                <form class="mt-6">
+                                <form class="mt-6" action="" method="post">
                                     <select class="select">
                                         <option disabled selected>Pick a color</option>
                                         <option>Crimson</option>
