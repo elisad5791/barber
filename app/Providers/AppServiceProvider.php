@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Repositories\MasterRepository;
 use App\Repositories\ServiceRepository;
+use App\Repositories\SalonRepository;
 use App\Services\MasterRepositoryInterface;
 use App\Services\ServiceRepositoryInterface;
+use App\Services\SalonRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(ServiceRepositoryInterface::class, ServiceRepository::class);
         $this->app->bind(MasterRepositoryInterface::class, MasterRepository::class);
+        $this->app->bind(SalonRepositoryInterface::class, SalonRepository::class);
     }
 
     /**
