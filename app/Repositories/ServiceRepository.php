@@ -31,9 +31,11 @@ class ServiceRepository implements ServiceRepositoryInterface
      */
     public function fetchMissingBySalon(int $salonId): array
     {
-        $salonServices = $this->fetchBySalon($salonId);
-        $allServices = $this->fetchAll();
-        $missingServices = array_diff($allServices, $salonServices);
+        $salonServicesIds = array_column($this->fetchBySalon($salonId), 'id');
+        $allServicesIds = array_column($this->fetchAll(), 'id');
+        $missingServicesIds = array_diff($allServicesIds, $salonServicesIds);
+
+        $missingServices = Service::whereIn('id', $missingServicesIds)->get()->all();
         return $missingServices;
     }
 }

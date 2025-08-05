@@ -12,4 +12,9 @@ class SalonRepository implements SalonRepositoryInterface
         $salon = Salon::findOrFail($salonId);
         return $salon;
     }
+
+    public function save(Salon $salon): void
+    {
+        $salon->save();
+    }
 }

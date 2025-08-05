@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Salon\ServiceStoreRequest;
+use App\Services\UseCases\Commands\Salon\StoreService\Command;
 use App\Services\UseCases\Queries\Services\FetchMissingBySalon\Fetcher as MissingServiceFetcher;
 use App\Services\UseCases\Queries\Services\FetchBySalon\Fetcher as ServiceFetcher;
 use App\Services\UseCases\Queries\Masters\FetchBySalon\Fetcher as MasterFetcher;
@@ -10,7 +12,7 @@ use App\Services\UseCases\Queries\Services\FetchBySalon\Query as ServiceQuery;
 use App\Services\UseCases\Queries\Services\FetchMissingBySalon\Query as MissingServiceQuery;
 use App\Services\UseCases\Queries\Masters\FetchBySalon\Query as MasterQuery;
 use App\Services\UseCases\Queries\Salons\FetchById\Query as SalonQuery;
-use Illuminate\Http\Request;
+use App\Services\UseCases\Commands\Salon\StoreService\Handler;
 
 class DashboardController extends Controller
 {
@@ -18,7 +20,8 @@ class DashboardController extends Controller
         private ServiceFetcher $serviceFetcher,
         private MissingServiceFetcher $missingServiceFetcher,
         private MasterFetcher $masterFetcher,
-        private SalonFetcher $salonFetcher
+        private SalonFetcher $salonFetcher,
+        private Handler $salonHandler
     ) {}
 
     public function index()
@@ -40,8 +43,15 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function storeSalonService()
+    public function storeService(ServiceStoreRequest $request)
     {
+        $data = $request->validated();
+        $serviceId = $data['service_id'];
+
+        $salonId = auth()->user()->salon->id;
+
+        $this->salonHandler->handle(new Command($salonId, $serviceId));
         
+        return redirect()->route('dashboard');
     }
 }

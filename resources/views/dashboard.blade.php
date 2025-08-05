@@ -43,8 +43,9 @@
                                 </ul>
 
                                 @if (!empty($missingServices))
-                                    <form class="mt-6" action="" method="post">
-                                        <select class="select">
+                                    <form class="mt-6" action="{{ route('dashboard.service.add') }}" method="post">
+                                        @csrf
+                                        <select class="select" name="service_id">
                                             @foreach ($missingServices as $service)
                                             <option value="{{ $service->id }}">{{ $service->title }}</option>
                                             @endforeach
