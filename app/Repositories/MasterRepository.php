@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Master;
 use App\Models\Salon;
 use App\Services\MasterRepositoryInterface;
 use App\Models\Service;
@@ -15,5 +16,11 @@ class MasterRepository implements MasterRepositoryInterface
     {
         $masters = Salon::findOrFail($salonId)->masters->all();
         return $masters;
+    }
+
+    public function save(Master $master, array $serviceIds): void
+    {
+        $master->save();
+        $master->services()->sync($serviceIds);
     }
 }

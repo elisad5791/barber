@@ -77,7 +77,7 @@
                                     </ul>
 
                                     <div class="mt-6">
-                                        <a href="#" class="btn btn-success">Добавить мастера</a>
+                                        <a href="{{ route('dashboard.master.create') }}" class="btn btn-success">Добавить мастера</a>
                                     </div>
                                 </div>
                             </div>
