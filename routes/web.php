@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/master/{masterId}', [MasterController::class, 'show'])->name('dashboard.master.show');
     Route::get('/dashboard/master/create', [MasterController::class, 'create'])->name('dashboard.master.create');
     Route::post('/dashboard/master', [MasterController::class, 'store'])->name('dashboard.master.store');
+    Route::delete('/dashboard/master/{masterId}', [MasterController::class, 'delete'])->name('dashboard.master.delete');
 
     Route::get('/dashboard/salon/edit', [SalonController::class, 'edit'])->name('dashboard.salon.edit');
     Route::patch('/dashboard/salon/update', [SalonController::class, 'update'])->name('dashboard.salon.update');

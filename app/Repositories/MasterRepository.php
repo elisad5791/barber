@@ -29,4 +29,11 @@ class MasterRepository implements MasterRepositoryInterface
         $master = Master::with('services')->findOrFail($masterId);
         return $master;
     }
+
+    public function delete(int $masterId): void
+    {
+        $master = $this->fetchById($masterId);
+        $master->services()->detach();
+        $master->delete();
+    }
 }
