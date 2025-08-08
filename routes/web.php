@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SalonController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,6 +20,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard/master/create', [MasterController::class, 'create'])->name('dashboard.master.create');
     Route::post('/dashboard/master', [MasterController::class, 'store'])->name('dashboard.master.store');
+
+    Route::get('/dashboard/salon/edit', [SalonController::class, 'edit'])->name('dashboard.salon.edit');
+    Route::patch('/dashboard/salon/update', [SalonController::class, 'update'])->name('dashboard.salon.update');
 });
 
 require __DIR__.'/auth.php';

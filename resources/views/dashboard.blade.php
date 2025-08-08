@@ -21,7 +21,7 @@
                                 </div>
 
                                 <div>
-                                    <a href="#" class="btn btn-success mt-2">Редактировать</a>
+                                    <a href="{{ route('dashboard.salon.edit') }}" class="btn btn-success mt-2">Редактировать</a>
                                 </div>
                             </div>
                         </div>
