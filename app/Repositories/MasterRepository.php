@@ -23,4 +23,10 @@ class MasterRepository implements MasterRepositoryInterface
         $master->save();
         $master->services()->sync($serviceIds);
     }
+
+    public function fetchById(int $masterId): Master
+    {
+        $master = Master::with('services')->findOrFail($masterId);
+        return $master;
+    }
 }
