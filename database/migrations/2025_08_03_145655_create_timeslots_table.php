@@ -17,6 +17,8 @@ return new class extends Migration
             $table->timestamp('finish')->nullable();
             $table->foreignId('master_id')->constrained();
             $table->foreignId('service_id')->constrained();
+            $table->string('status')->default('free');
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }
