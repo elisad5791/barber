@@ -34,6 +34,7 @@ class MasterRepository implements MasterRepositoryInterface
     {
         $master = $this->fetchById($masterId);
         $master->services()->detach();
+        $master->timeslots()->delete();
         $master->delete();
     }
 }

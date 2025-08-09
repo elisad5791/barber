@@ -6,3 +6,17 @@
 .fc .fc-view-harness {
     height: 370px!important;
 }
+
+.fc .fc-scrollgrid {
+    min-width: 700px;
+}
+
+.fc .fc-view-harness-active > .fc-view {
+    overflow-x: auto;
+}
+
+@media (max-width: 700px) {
+    .fc .fc-toolbar.fc-header-toolbar {
+        display: block;
+    }
+}
