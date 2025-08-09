@@ -21,7 +21,8 @@ class MasterController extends Controller
         private MasterFetcher $masterFetcher,
         private Handler $storeHandler,
         private DeleteHandler $deleteHandler
-    ) {}
+    ) {
+    }
 
     public function create(): View
     {
@@ -47,7 +48,7 @@ class MasterController extends Controller
         $master = $this->masterFetcher->fetch(new MasterQuery($masterId));
 
         return view('admin.master.show', [
-            'name' => $master->name, 
+            'name' => $master->name,
             'phone' => $master->phone,
             'services' => $master->services
         ]);
@@ -57,7 +58,10 @@ class MasterController extends Controller
     {
         $master = $this->masterFetcher->fetch(new MasterQuery($masterId));
 
-        return view('admin.master.schedule', ['name' => $master->name]);
+        return view('admin.master.schedule', [
+            'id' => $master->id,
+            'name' => $master->name
+        ]);
     }
 
     public function delete(int $masterId): RedirectResponse

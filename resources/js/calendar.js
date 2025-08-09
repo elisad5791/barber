@@ -6,6 +6,16 @@ import interactionPlugin from '@fullcalendar/interaction';
 
 document.addEventListener('DOMContentLoaded', function() {
     const calendarEl = document.getElementById('calendar');
+    const masterId = document.querySelector('[data-master-id]').getAttribute('data-master-id');
+
+    const openEmptyModal = document.getElementById('open_empty_modal');
+    const startInput = document.getElementById('interval_start');
+    const finishInput = document.getElementById('interval_finish');
+
+    const openFullModal = document.getElementById('open_full_modal');
+    const slotDescription = document.getElementById('slot_description');
+    const deleteInput = document.getElementById('delete_start');
+
     const calendar = new Calendar(calendarEl, {
         locale: ruLocale,
         plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
@@ -14,12 +24,16 @@ document.addEventListener('DOMContentLoaded', function() {
             left: 'prev,next today',
             center: 'title'
         },
-        events: '/api/bookings',
+        events: '/timeslots/' + masterId,
         select: function(info) {
-            alert('Выбрано: ' + info.startStr + ' до ' + info.endStr);
+            startInput.value = info.startStr;
+            finishInput.value = info.endStr;
+            openEmptyModal.click();
         },
-        eventClick: function(info) { // клик по событию (например, просмотр записи)
-            alert('Запись: ' + info.event.title);
+        eventClick: function(info) {
+            deleteInput.value = info.event.startStr;
+            slotDescription.textContent = info.event.title;
+            openFullModal.click();
         },
         selectable: true,
         allDaySlot: false,

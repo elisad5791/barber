@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SalonController;
+use App\Http\Controllers\TimeslotController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,6 +27,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard/salon/edit', [SalonController::class, 'edit'])->name('dashboard.salon.edit');
     Route::patch('/dashboard/salon/update', [SalonController::class, 'update'])->name('dashboard.salon.update');
+
+    Route::get('/timeslots/{masterId}', [TimeslotController::class, 'getTimeslots'])->name('dashboard.timeslots');
+    Route::post('/timeslots', [TimeslotController::class, 'store'])->name('dashboard.timeslots.store');
+    Route::delete('/timeslots', [TimeslotController::class, 'delete'])->name('dashboard.timeslots.delete');
 });
 
 require __DIR__.'/auth.php';

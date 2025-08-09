@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamp('start')->nullable();
             $table->timestamp('finish')->nullable();
             $table->foreignId('master_id')->constrained();
-            $table->foreignId('service_id')->constrained();
+            $table->foreignId('service_id')->nullable()->constrained();
             $table->string('status')->default('free');
             $table->string('comment')->nullable();
             $table->timestamps();

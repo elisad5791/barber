@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Master extends Model
 {
@@ -12,5 +13,10 @@ class Master extends Model
     public function services(): BelongsToMany
     {
         return $this->belongsToMany(Service::class);
+    }
+
+    public function timeslots(): HasMany
+    {
+        return $this->hasMany(Timeslot::class)->with('service');
     }
 }
