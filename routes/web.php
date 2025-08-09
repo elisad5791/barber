@@ -18,8 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/dashboard/service', [DashboardController::class, 'storeService'])->name('dashboard.service.add');
 
-    Route::get('/dashboard/master/{masterId}', [MasterController::class, 'show'])->name('dashboard.master.show');
     Route::get('/dashboard/master/create', [MasterController::class, 'create'])->name('dashboard.master.create');
+    Route::get('/dashboard/master/{masterId}', [MasterController::class, 'show'])->name('dashboard.master.show');
+    Route::get('/dashboard/master/schedule/{masterId}', [MasterController::class, 'schedule'])->name('dashboard.master.schedule');
     Route::post('/dashboard/master', [MasterController::class, 'store'])->name('dashboard.master.store');
     Route::delete('/dashboard/master/{masterId}', [MasterController::class, 'delete'])->name('dashboard.master.delete');
 

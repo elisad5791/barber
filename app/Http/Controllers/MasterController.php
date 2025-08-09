@@ -53,6 +53,13 @@ class MasterController extends Controller
         ]);
     }
 
+    public function schedule(int $masterId): View
+    {
+        $master = $this->masterFetcher->fetch(new MasterQuery($masterId));
+
+        return view('admin.master.schedule', ['name' => $master->name]);
+    }
+
     public function delete(int $masterId): RedirectResponse
     {
         $command = new DeleteCommand($masterId);

@@ -70,7 +70,7 @@
                                                 <span class="text-xs uppercase font-semibold opacity-60">{{ $master->name }}</span>
                                                 <a href="{{ route('dashboard.master.show', $master->id) }}"
                                                     class="btn btn-info btn-sm ms-2">Детали</a>
-                                                <a href="#" class="btn btn-info btn-sm ms-2">График</a>
+                                                <a href="{{ route('dashboard.master.schedule', $master->id) }}" class="btn btn-info btn-sm ms-2">График</a>
 
                                                 <button type="button" class="btn btn-secondary btn-sm ms-2" onclick="my_modal_{{ $master->id }}.showModal()">
                                                     Удалить

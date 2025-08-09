@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @plugin "daisyui";
+
+.fc .fc-view-harness {
+    height: 370px!important;
+}
