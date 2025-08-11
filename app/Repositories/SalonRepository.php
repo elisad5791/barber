@@ -19,6 +19,12 @@ class SalonRepository implements SalonRepositoryInterface
         return $salon;
     }
 
+    public function fetchByIdWithDetails(int $salonId): Salon
+    {
+        $salon = Salon::with(['services', 'masters.services'])->findOrFail($salonId);
+        return $salon;
+    }
+
     public function save(Salon $salon): void
     {
         $salon->save();

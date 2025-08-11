@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Services\UseCases\Queries\Salons\FetchAll;
-
+namespace App\Services\UseCases\Queries\Salons\FetchByIdWithDetails;
 use Illuminate\Support\Carbon;
 
-class Dto
+class SalonDto
 {
     public function __construct(
         public int $id,

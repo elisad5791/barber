@@ -42,25 +42,26 @@
         @endif
     </header>
 
-    <div
-        class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
+    <div class="flex justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0 mt-8">
         <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
-            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 w-full">
-                @foreach ($salons as $salon)
-                    <div class="card bg-primary text-primary-content">
-                        <div class="card-body">
-                            <h2 class="card-title">{{ $salon->title }}</h2>
-                            <ul>
-                            @foreach ($salon->services as $service)
-                                <li>{{ $service->title }}</li>
+            <div class="w-full">
+                <h1 class="text-4xl font-bold">{{ $title }}</h1>
+                <p class="mt-6">{{ $description }}</p>
+                <table class="table-auto">
+                    <tbody>
+                        @foreach ($services as $service)
+                            <tr class="font-bold">
+                                <td colspan="2" class="pt-8">{{ $service->title }}</td>
+                            </tr>
+                            @foreach ($service->masters as $master)
+                            <tr>
+                                <td class="pt-4 ps-8">{{ $master->name }}</td>
+                                <td class="pt-4 ps-8"><a href="#" class="btn btn-info ms-6">Записаться</a></td>
+                            </tr>
                             @endforeach
-                            </ul>
-                            <div class="card-actions justify-end">
-                                <a href="{{ route('welcome.salon', $salon->id) }}" class="btn">Записаться</a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </main>
     </div>

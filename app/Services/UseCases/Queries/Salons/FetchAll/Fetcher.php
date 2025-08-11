@@ -20,8 +20,8 @@ class Fetcher
                 $salon->id,
                 $salon->user_id,
                 $salon->title,
-                $salon->services->all(),
                 $salon->description,
+                $salon->services->all(),
                 $salon->created_at,
                 $salon->updated_at
             );
