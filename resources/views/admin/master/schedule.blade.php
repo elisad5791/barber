@@ -41,6 +41,7 @@
 <dialog id="full_modal" class="modal">
     <div class="modal-box">
         <h3 class="text-lg font-bold" id="slot_description">Slot description</h3>
+        <p id="slot_comment">Slot comment</p>
         <div class="flex justify-between items-end">
             <div class="modal-action">
                 <form method="dialog">

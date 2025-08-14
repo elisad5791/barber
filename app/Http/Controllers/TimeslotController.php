@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Timeslot\DeleteRequest;
 use App\Http\Requests\Timeslot\StoreRequest;
+use App\Http\Requests\Timeslot\UpdateRequest;
 use App\Services\UseCases\Commands\Timeslot\Add\Command as StoreCommand;
 use App\Services\UseCases\Commands\Timeslot\Add\Handler as StoreHandler;
 use App\Services\UseCases\Commands\Timeslot\Delete\Command as DeleteCommand;
 use App\Services\UseCases\Commands\Timeslot\Delete\Handler as DeleteHandler;
 use App\Services\UseCases\Queries\Timeslots\FetchByMaster\Fetcher as TimeslotFetcher;
 use App\Services\UseCases\Queries\Timeslots\FetchByMaster\Query as TimeslotQuery;
+use App\Services\UseCases\Commands\Timeslot\Update\Command as UpdateCommand;
+use App\Services\UseCases\Commands\Timeslot\Update\Handler as UpdateHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 
@@ -18,9 +21,9 @@ class TimeslotController extends Controller
     public function __construct(
         private TimeslotFetcher $timeslotFetcher,
         private StoreHandler $storeHandler,
-        private DeleteHandler $deleteHandler
-    ) {
-    }
+        private DeleteHandler $deleteHandler,
+        private UpdateHandler $updateHandler
+    ) {}
 
     public function getTimeslots(int $masterId): JsonResponse
     {
@@ -35,6 +38,10 @@ class TimeslotController extends Controller
                 'start' => $timeslot->start,
                 'end' => $timeslot->finish,
                 'color' => $color,
+                'extendedProps' => [
+                    'status' => $timeslot->status,
+                    'comment' => $timeslot->comment ?? '',
+                ]
             ];
         }, $timeslots);
 
@@ -49,6 +56,16 @@ class TimeslotController extends Controller
         $this->storeHandler->handle($command);
 
         return redirect()->route('dashboard.master.schedule', $data['master_id']);
+    }
+
+    public function update(UpdateRequest $request): RedirectResponse
+    {
+        $data = $request->validated();
+
+        $command = new UpdateCommand($data['timeslot_id'], $data['service_id'], $data['comment']);
+        $this->updateHandler->handle($command);
+
+        return redirect()->back();
     }
 
     public function delete(DeleteRequest $request): RedirectResponse

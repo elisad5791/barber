@@ -31,6 +31,12 @@ class TimeslotRepository implements TimeslotRepositoryInterface
         return $result;
     }
 
+    public function fetchById(int $timeslotId): Timeslot
+    {
+        $timeslot = Timeslot::findOrFail($timeslotId);
+        return $timeslot;
+    }
+
     public function save(Timeslot $timeslot): void
     {
         $timeslot->save();

@@ -64,12 +64,12 @@
                                     <div class="flex justify-between">
                                         <h2 class="text-2xl font-bold">Мастера</h2>
                                     </div>
-                                    <ul class="mt-6 flex flex-col gap-2 text-xs">
+                                    <ul class="flex flex-col gap-2 text-xs">
                                         @forelse ($masters as $master)
                                             <li class="list-row">
-                                                <span class="text-xs uppercase font-semibold opacity-60">{{ $master->name }}</span>
+                                                <div class="text-xs uppercase font-semibold opacity-60 mb-2 mt-4">{{ $master->name }}</div>
                                                 <a href="{{ route('dashboard.master.show', $master->id) }}"
-                                                    class="btn btn-info btn-sm ms-2">Детали</a>
+                                                    class="btn btn-info btn-sm">Детали</a>
                                                 <a href="{{ route('dashboard.master.schedule', $master->id) }}" class="btn btn-info btn-sm ms-2">График</a>
 
                                                 <button type="button" class="btn btn-secondary btn-sm ms-2" onclick="my_modal_{{ $master->id }}.showModal()">

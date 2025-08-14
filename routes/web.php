@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/salon/{salonId}', [WelcomeController::class, 'showSalon'])->name('welcome.salon');
+Route::get('/master/{masterId}', [WelcomeController::class, 'showMaster'])->name('welcome.master');
+
+Route::get('/timeslots/{masterId}', [TimeslotController::class, 'getTimeslots'])->name('dashboard.timeslots');
+Route::patch('/timeslots', [TimeslotController::class, 'update'])->name('welcome.timeslots.update');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,7 +32,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/salon/edit', [SalonController::class, 'edit'])->name('dashboard.salon.edit');
     Route::patch('/dashboard/salon/update', [SalonController::class, 'update'])->name('dashboard.salon.update');
 
-    Route::get('/timeslots/{masterId}', [TimeslotController::class, 'getTimeslots'])->name('dashboard.timeslots');
     Route::post('/timeslots', [TimeslotController::class, 'store'])->name('dashboard.timeslots.store');
     Route::delete('/timeslots', [TimeslotController::class, 'delete'])->name('dashboard.timeslots.delete');
 });
