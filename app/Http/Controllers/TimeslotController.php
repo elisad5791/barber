@@ -62,7 +62,7 @@ class TimeslotController extends Controller
     {
         $data = $request->validated();
 
-        $command = new UpdateCommand($data['timeslot_id'], $data['service_id'], $data['comment']);
+        $command = new UpdateCommand($data['timeslot_id'], $data['user_id'], $data['service_id'], $data['comment']);
         $this->updateHandler->handle($command);
 
         return redirect()->back();

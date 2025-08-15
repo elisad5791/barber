@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (clientCalendarEl) {
         const masterId = document.querySelector('[data-master-id]').getAttribute('data-master-id');
+        const userId = document.getElementById('user_id').value;
 
         const openReservationModal = document.getElementById('open_reservation_modal');
         const timeStart = document.getElementById('time_start');
@@ -68,6 +69,10 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             events: '/timeslots/' + masterId,
             eventClick: function (info) {
+                if (userId == 0) {
+                    window.location.href = '/login';
+                }
+
                 const status = info.event.extendedProps.status;
                 const timeslotId = info.event.id;
                 if (status != 'free') {

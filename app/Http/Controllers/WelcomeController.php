@@ -36,6 +36,7 @@ class WelcomeController extends Controller
 
     public function showMaster(int $masterId): View
     {
+        $userId = auth()->id() ?? 0;
         $master = $this->masterFetcher->fetch(new MasterQuery($masterId));
 
         return view('reservation.master', [
@@ -43,6 +44,7 @@ class WelcomeController extends Controller
             'name' => $master->name,
             'phone' => $master->phone,
             'services' => $master->services,
+            'userId' => $userId
         ]);
     }
 }

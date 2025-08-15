@@ -31,6 +31,7 @@
             @csrf
             @method('patch')
             <input type="hidden" name="timeslot_id" id="timeslot_id" value="">
+            <input type="hidden" name="user_id" id="user_id" value="{{ $userId }}">
 
             <fieldset class="fieldset">
                 <legend class="fieldset-legend">Выберите услугу</legend>
@@ -42,7 +43,7 @@
             </fieldset>
 
             <fieldset class="fieldset">
-                <legend class="fieldset-legend">Ваше имя (или другая информация)</legend>
+                <legend class="fieldset-legend">Комментарий</legend>
                 <input type="text" class="input" name="comment"/>
             </fieldset>
 

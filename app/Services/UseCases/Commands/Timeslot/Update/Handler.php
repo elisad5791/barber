@@ -12,6 +12,7 @@ class Handler
     {
         $timeslot = $this->timeslotRepository->fetchById($command->timeslotId);
         $timeslot->status = 'busy';
+        $timeslot->user_id = $command->userId;
         $timeslot->service_id = $command->serviceId;
         $timeslot->comment = $command->comment;
         $this->timeslotRepository->save($timeslot);

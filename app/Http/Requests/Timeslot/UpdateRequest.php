@@ -15,6 +15,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'timeslot_id' => ['required', 'integer'],
+            'user_id' => ['required', 'integer'],
             'service_id' => ['required', 'integer'],
             'comment' => ['required', 'string'],
         ];
