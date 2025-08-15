@@ -26,7 +26,7 @@ class MasterRepository implements MasterRepositoryInterface
 
     public function fetchById(int $masterId): Master
     {
-        $master = Master::with('services')->findOrFail($masterId);
+        $master = Master::with(['user', 'services'])->findOrFail($masterId);
         return $master;
     }
 

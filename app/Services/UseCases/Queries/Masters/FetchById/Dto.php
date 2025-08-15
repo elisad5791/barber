@@ -8,6 +8,7 @@ class Dto
         public int $id,
         public string $name,
         public string $phone,
+        public string $email,
         public array $services
     ) {}
 }

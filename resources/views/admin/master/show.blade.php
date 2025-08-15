@@ -20,6 +20,10 @@
                                 <td>{{ $phone }}</td>
                             </tr>
                             <tr>
+                                <th>Email</th>
+                                <td>{{ $email }}</td>
+                            </tr>
+                            <tr>
                                 <th>Услуги</th>
                                 <td>
                                     <ul>

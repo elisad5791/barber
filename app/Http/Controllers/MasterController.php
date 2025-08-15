@@ -37,7 +37,7 @@ class MasterController extends Controller
         $data = $request->validated();
         $salonId = auth()->user()->salon->id;
 
-        $command = new Command($salonId, $data['name'], $data['phone'], $data['service_ids']);
+        $command = new Command($salonId, $data['name'], $data['email'], $data['phone'], $data['password'], $data['service_ids']);
         $this->storeHandler->handle($command);
 
         return redirect()->route('dashboard');
@@ -50,6 +50,7 @@ class MasterController extends Controller
         return view('admin.master.show', [
             'name' => $master->name,
             'phone' => $master->phone,
+            'email' => $master->email,
             'services' => $master->services
         ]);
     }

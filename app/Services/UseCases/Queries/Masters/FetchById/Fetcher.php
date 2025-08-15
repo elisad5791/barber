@@ -22,6 +22,7 @@ class Fetcher
             $master->id,
             $master->name,
             $master->phone,
+            $master->user->email,
             $services
         );
 

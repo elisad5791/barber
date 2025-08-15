@@ -20,8 +20,22 @@
 
                         <div>
                             <fieldset class="fieldset">
+                                <legend class="fieldset-legend">Email</legend>
+                                <input type="email" name="email" class="input" />
+                            </fieldset>
+                        </div>
+
+                        <div>
+                            <fieldset class="fieldset">
                                 <legend class="fieldset-legend">Телефон</legend>
                                 <input type="text" name="phone" class="input" />
+                            </fieldset>
+                        </div>
+
+                        <div>
+                            <fieldset class="fieldset">
+                                <legend class="fieldset-legend">Пароль</legend>
+                                <input type="password" name="password" class="input" />
                             </fieldset>
                         </div>
 

@@ -15,7 +15,9 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
+            'email' => ['required', 'email'],
             'phone' => ['required', 'string'],
+            'password' => ['required', 'string', 'min:6'],
             'service_ids' => ['required', 'array'],
             'service_ids.*' => ['required', 'integer', 'gt:0'],
         ];
