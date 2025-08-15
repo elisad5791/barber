@@ -19,7 +19,8 @@ class MasterFactory extends Factory
         return [
             'name' => fake()->name,
             'phone' => fake()->phoneNumber(),
-            'salon_id' => 1
+            'user_id' => 1,
+            'salon_id' => 1,
         ];
     }
 }
