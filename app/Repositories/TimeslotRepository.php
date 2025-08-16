@@ -18,6 +18,19 @@ class TimeslotRepository implements TimeslotRepositoryInterface
     }
 
     /**
+     * @return Timeslot[]
+     */
+    public function fetchByClient(int $userId): array
+    {
+        $timeslots = Timeslot::with(['service', 'master'])
+            ->where('user_id', $userId)
+            ->orderBy('start', 'desc')
+            ->get()
+            ->all();
+        return $timeslots;
+    }
+
+    /**
      * @return string[]
      */
     public function fetchExistingStarts(array $starts, int $masterId): array
