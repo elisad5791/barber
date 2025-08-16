@@ -19,6 +19,7 @@ class MasterSeeder extends Seeder
                     'name' => 'master' . $i . $j,
                     'email'=> 'master' . $i . $j . '@mail.ru',
                 ]);
+                $user->assignRole('master');
                 $master = Master::factory()->create(['salon_id' => $i, 'user_id' => $user->id]);
                 $master->services()->sync(fake()->randomElements([1, 2, 3, 4, 5], 3));
             }

@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (calendarEl) {
         const masterId = document.querySelector('[data-master-id]').getAttribute('data-master-id');
+        const roleName = document.querySelector('[data-role-name]').getAttribute('data-role-name');
 
         const openEmptyModal = document.getElementById('open_empty_modal');
         const startInput = document.getElementById('interval_start');
@@ -30,11 +31,19 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             events: '/timeslots/' + masterId,
             select: function (info) {
+                if (roleName != 'owner') {
+                    return;
+                }
+
                 startInput.value = info.startStr;
                 finishInput.value = info.endStr;
                 openEmptyModal.click();
             },
             eventClick: function (info) {
+                if (roleName != 'owner') {
+                    return;
+                }
+                
                 deleteInput.value = info.event.startStr;
                 slotDescription.textContent = info.event.title;
                 slotComment.textContent = info.event.extendedProps.comment;

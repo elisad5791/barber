@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Salon::class);
     }
+
+    public function master(): HasOne
+    {
+        return $this->hasOne(Master::class);
+    }
 }

@@ -20,10 +20,12 @@
                                     {{ $description }}
                                 </div>
 
+                                @can('edit dashboard')
                                 <div>
                                     <a href="{{ route('dashboard.salon.edit') }}"
                                         class="btn btn-success mt-2">Редактировать</a>
                                 </div>
+                                @endcan
                             </div>
                         </div>
 
@@ -44,17 +46,19 @@
                                     @endforelse
                                 </ul>
 
-                                @if (!empty($missingServices))
-                                    <form class="mt-6" action="{{ route('dashboard.service.add') }}" method="post">
-                                        @csrf
-                                        <select class="select" name="service_id">
-                                            @foreach ($missingServices as $service)
-                                                <option value="{{ $service->id }}">{{ $service->title }}</option>
-                                            @endforeach
-                                        </select>
-                                        <button class="btn btn-success mt-2">Добавить</button>
-                                    </form>
-                                @endif
+                                @can('edit dashboard')
+                                    @if (!empty($missingServices))
+                                        <form class="mt-6" action="{{ route('dashboard.service.add') }}" method="post">
+                                            @csrf
+                                            <select class="select" name="service_id">
+                                                @foreach ($missingServices as $service)
+                                                    <option value="{{ $service->id }}">{{ $service->title }}</option>
+                                                @endforeach
+                                            </select>
+                                            <button class="btn btn-success mt-2">Добавить</button>
+                                        </form>
+                                    @endif
+                                @endcan
                             </div>
                         </div>
 
@@ -72,26 +76,28 @@
                                                     class="btn btn-info btn-sm">Детали</a>
                                                 <a href="{{ route('dashboard.master.schedule', $master->id) }}" class="btn btn-info btn-sm ms-2">График</a>
 
-                                                <button type="button" class="btn btn-secondary btn-sm ms-2" onclick="my_modal_{{ $master->id }}.showModal()">
-                                                    Удалить
-                                                </button>
-                                                <dialog id="my_modal_{{ $master->id }}" class="modal">
-                                                    <div class="modal-box">
-                                                        <h3 class="text-lg font-bold">Вы уверены, что хотите удалить мастера?</h3>
-                                                        <div class="flex justify-between items-end">
-                                                            <form action="{{ route('dashboard.master.delete', $master->id) }}" method="post">
-                                                                @csrf
-                                                                @method('delete')
-                                                                <button class="btn">Удалить</button>
-                                                            </form>
-                                                            <div class="modal-action">
-                                                                <form method="dialog">
-                                                                    <button class="btn">Отмена</button>
+                                                @can('edit dashboard')
+                                                    <button type="button" class="btn btn-secondary btn-sm ms-2" onclick="my_modal_{{ $master->id }}.showModal()">
+                                                        Удалить
+                                                    </button>
+                                                    <dialog id="my_modal_{{ $master->id }}" class="modal">
+                                                        <div class="modal-box">
+                                                            <h3 class="text-lg font-bold">Вы уверены, что хотите удалить мастера?</h3>
+                                                            <div class="flex justify-between items-end">
+                                                                <form action="{{ route('dashboard.master.delete', $master->id) }}" method="post">
+                                                                    @csrf
+                                                                    @method('delete')
+                                                                    <button class="btn">Удалить</button>
                                                                 </form>
+                                                                <div class="modal-action">
+                                                                    <form method="dialog">
+                                                                        <button class="btn">Отмена</button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </dialog>
+                                                    </dialog>
+                                                @endcan
                                             </li>
                                         @empty
                                             <li class="list-row">
@@ -100,10 +106,12 @@
                                         @endforelse
                                     </ul>
 
-                                    <div class="mt-6">
-                                        <a href="{{ route('dashboard.master.create') }}"
-                                            class="btn btn-success">Добавить мастера</a>
-                                    </div>
+                                    @can('edit dashboard')
+                                        <div class="mt-6">
+                                            <a href="{{ route('dashboard.master.create') }}"
+                                                class="btn btn-success">Добавить мастера</a>
+                                        </div>
+                                    @endcan
                                 </div>
                             </div>
                         </div>

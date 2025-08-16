@@ -17,6 +17,7 @@ class SalonSeeder extends Seeder
             'name' => 'owner1',
             'email' => 'owner1@mail.ru'
         ]);
+        $user1->assignRole('owner');
         $salon1 = Salon::create([
             'user_id' => $user1->id,
             'title' => 'Фея',
@@ -28,6 +29,7 @@ class SalonSeeder extends Seeder
             'name' => 'owner2',
             'email' => 'owner2@mail.ru'
         ]);
+        $user2->assignRole('owner');
         $salon2 = Salon::create([
             'user_id' => $user2->id,
             'title' => 'Золушка',
@@ -39,6 +41,7 @@ class SalonSeeder extends Seeder
             'name' => 'owner3',
             'email' => 'owner3@mail.ru'
         ]);
+        $user3->assignRole('owner');
         $salon3 = Salon::create([
             'user_id' => $user3->id,
             'title' => 'Кудесница',
@@ -50,6 +53,7 @@ class SalonSeeder extends Seeder
             'name' => 'owner4',
             'email' => 'owner4@mail.ru'
         ]);
+        $user4->assignRole('owner');
         $salon4 = Salon::create([
             'user_id' => $user4->id,
             'title' => 'Мелифисента',

@@ -59,9 +59,12 @@ class MasterController extends Controller
     {
         $master = $this->masterFetcher->fetch(new MasterQuery($masterId));
 
+        $roleName = auth()->user()->getRoleNames()->first();
+
         return view('admin.master.schedule', [
             'id' => $master->id,
-            'name' => $master->name
+            'name' => $master->name,
+            'roleName' => $roleName
         ]);
     }
 

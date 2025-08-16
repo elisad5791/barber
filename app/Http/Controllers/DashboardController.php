@@ -26,7 +26,15 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $salonId = auth()->user()->salon->id;
+        $user = auth()->user();
+        
+        if ($user->hasRole('owner')) {
+            $salonId = $user->salon->id;
+        } elseif ($user->hasRole('master')) {
+            $salonId = $user->master->salon->id;
+        } else {
+            return redirect()->route('welcome');
+        }
 
         $salon = $this->salonFetcher->fetch(new SalonQuery($salonId));
 

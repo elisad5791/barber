@@ -8,6 +8,6 @@ class Command
         public int $timeslotId,
         public int $userId,
         public int $serviceId,
-        public string $comment,
+        public ?string $comment,
     ) {}
 }
