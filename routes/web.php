@@ -4,6 +4,7 @@ use App\Http\Controllers\CabinetController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SalonController;
 use App\Http\Controllers\TimeslotController;
 use App\Http\Controllers\WelcomeController;
@@ -13,9 +14,9 @@ Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/salon/{salonId}', [WelcomeController::class, 'showSalon'])->name('welcome.salon');
 Route::get('/master/{masterId}', [WelcomeController::class, 'showMaster'])->name('welcome.master');
 
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+
 Route::get('/timeslots/{masterId}', [TimeslotController::class, 'getTimeslots'])->name('dashboard.timeslots');
-Route::patch('/timeslots', [TimeslotController::class, 'update'])->name('welcome.timeslots.update');
-Route::patch('/timeslots/cancel', [TimeslotController::class, 'cancel'])->name('welcome.timeslots.cancel');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -38,6 +39,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/timeslots', [TimeslotController::class, 'store'])->name('dashboard.timeslots.store');
     Route::delete('/timeslots', [TimeslotController::class, 'delete'])->name('dashboard.timeslots.delete');
+    Route::patch('/timeslots', [TimeslotController::class, 'update'])->name('welcome.timeslots.update');
+    Route::patch('/timeslots/cancel', [TimeslotController::class, 'cancel'])->name('welcome.timeslots.cancel');
 });
 
 require __DIR__.'/auth.php';
