@@ -18,4 +18,9 @@ class Timeslot extends Model
     {
         return $this->belongsTo(Master::class);
     }
+
+    public function user(): ?BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

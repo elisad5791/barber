@@ -2,6 +2,7 @@
 
 namespace App\Services\UseCases\Commands\Timeslot\Update;
 
+use App\Events\ReservationCreated;
 use App\Services\TimeslotRepositoryInterface;
 
 class Handler
@@ -16,5 +17,7 @@ class Handler
         $timeslot->service_id = $command->serviceId;
         $timeslot->comment = $command->comment;
         $this->timeslotRepository->save($timeslot);
+
+        ReservationCreated::dispatch($command->timeslotId);
     }
 }

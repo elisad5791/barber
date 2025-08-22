@@ -10,6 +10,7 @@ interface TimeslotRepositoryInterface
     public function fetchByClient(int $userId): array;
     public function fetchExistingStarts(array $starts, int $masterId): array;
     public function fetchById(int $timeslotId): Timeslot;
+    public function fetchByIdWithDetails(int $timeslotId): Timeslot;
     public function save(Timeslot $timeslot): void;
     public function delete(int $masterId, string $start): void;
 }

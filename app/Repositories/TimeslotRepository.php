@@ -50,6 +50,12 @@ class TimeslotRepository implements TimeslotRepositoryInterface
         return $timeslot;
     }
 
+    public function fetchByIdWithDetails(int $timeslotId): Timeslot
+    {
+        $timeslot = Timeslot::with(['service', 'master.salon', 'user'])->findOrFail($timeslotId);
+        return $timeslot;
+    }
+
     public function save(Timeslot $timeslot): void
     {
         $timeslot->save();
