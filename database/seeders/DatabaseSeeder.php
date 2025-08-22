@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SalonSeeder::class);
         $this->call(MasterSeeder::class);
         $this->call(TimeslotSeeder::class);
+        $this->call(ReviewSeeder::class);
     }
 }

@@ -35,11 +35,22 @@ class PermissionsSeeder extends Seeder
         $role4 = Role::create(['name' => 'client']);
         $role4->givePermissionTo('make reservation');
 
-        $user = User::factory()->create([
+        $user1 = User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@mail.ru',
         ]);
-        $user->assignRole($role1);
+        $user1->assignRole($role1);
 
+        $user2 = User::factory()->create([
+            'name' => 'qwerty',
+            'email' => 'qwerty@mail.ru',
+        ]);
+        $user2->assignRole($role4);
+
+        $user3 = User::factory()->create([
+            'name' => 'elisad5791',
+            'email' => 'elisad5791@yandex.ru',
+        ]);
+        $user3->assignRole($role4);
     }
 }
