@@ -23,6 +23,7 @@ class Fetcher
                 Carbon::parse($item->start),
                 Carbon::parse($item->finish),
                 $item->master->name,
+                $item->master->salon->title,
                 $item->service->title
             );
         }, $timeslots);

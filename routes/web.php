@@ -15,6 +15,7 @@ Route::get('/master/{masterId}', [WelcomeController::class, 'showMaster'])->name
 
 Route::get('/timeslots/{masterId}', [TimeslotController::class, 'getTimeslots'])->name('dashboard.timeslots');
 Route::patch('/timeslots', [TimeslotController::class, 'update'])->name('welcome.timeslots.update');
+Route::patch('/timeslots/cancel', [TimeslotController::class, 'cancel'])->name('welcome.timeslots.cancel');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

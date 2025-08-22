@@ -1,8 +1,9 @@
 import './bootstrap';
+import './calendar';
+import './site';
 
 import Alpine from 'alpinejs';
 
-import './calendar';
 
 window.Alpine = Alpine;
 

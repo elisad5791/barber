@@ -22,7 +22,7 @@ class TimeslotRepository implements TimeslotRepositoryInterface
      */
     public function fetchByClient(int $userId): array
     {
-        $timeslots = Timeslot::with(['service', 'master'])
+        $timeslots = Timeslot::with(['service', 'master.salon'])
             ->where('user_id', $userId)
             ->orderBy('start', 'desc')
             ->get()

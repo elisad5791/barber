@@ -11,6 +11,7 @@ class Dto
         public Carbon $start,
         public Carbon $finish,
         public string $master_name,
+        public string $salon_title,
         public ?string $service_title,
     ) {}
 }

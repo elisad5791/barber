@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Timeslot\CancelRequest;
 use App\Http\Requests\Timeslot\DeleteRequest;
 use App\Http\Requests\Timeslot\StoreRequest;
 use App\Http\Requests\Timeslot\UpdateRequest;
@@ -13,6 +14,8 @@ use App\Services\UseCases\Queries\Timeslots\FetchByMaster\Fetcher as TimeslotFet
 use App\Services\UseCases\Queries\Timeslots\FetchByMaster\Query as TimeslotQuery;
 use App\Services\UseCases\Commands\Timeslot\Update\Command as UpdateCommand;
 use App\Services\UseCases\Commands\Timeslot\Update\Handler as UpdateHandler;
+use App\Services\UseCases\Commands\Timeslot\Cancel\Command as CancelCommand;
+use App\Services\UseCases\Commands\Timeslot\Cancel\Handler as CancelHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 
@@ -22,7 +25,8 @@ class TimeslotController extends Controller
         private TimeslotFetcher $timeslotFetcher,
         private StoreHandler $storeHandler,
         private DeleteHandler $deleteHandler,
-        private UpdateHandler $updateHandler
+        private UpdateHandler $updateHandler,
+        private CancelHandler $cancelHandler
     ) {}
 
     public function getTimeslots(int $masterId): JsonResponse
@@ -64,6 +68,16 @@ class TimeslotController extends Controller
 
         $command = new UpdateCommand($data['timeslot_id'], $data['user_id'], $data['service_id'], $data['comment']);
         $this->updateHandler->handle($command);
+
+        return redirect()->back();
+    }
+
+    public function cancel(CancelRequest $request): RedirectResponse
+    {
+        $data = $request->validated();
+
+        $command = new CancelCommand($data['timeslot_id']);
+        $this->cancelHandler->handle($command);
 
         return redirect()->back();
     }
