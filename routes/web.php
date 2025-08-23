@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/timeslots', [TimeslotController::class, 'delete'])->name('dashboard.timeslots.delete');
     Route::patch('/timeslots', [TimeslotController::class, 'update'])->name('welcome.timeslots.update');
     Route::patch('/timeslots/cancel', [TimeslotController::class, 'cancel'])->name('welcome.timeslots.cancel');
+
+    Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 });
 
 require __DIR__.'/auth.php';

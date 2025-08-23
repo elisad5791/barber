@@ -27,4 +27,9 @@ class ReviewRepository implements ReviewRepositoryInterface
         $reviews = $builder->get()->all();
         return $reviews;
     }
+
+    public function save(Review $review): void
+    {
+        $review->save();
+    }
 }
