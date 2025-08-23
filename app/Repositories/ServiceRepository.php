@@ -20,6 +20,15 @@ class ServiceRepository implements ServiceRepositoryInterface
     /**
      * @return Service[]
      */
+    public function fetchAllShort(): array
+    {
+        $services = Service::select(['id', 'title'])->get()->all();
+        return $services;
+    }
+
+    /**
+     * @return Service[]
+     */
     public function fetchBySalon(int $salonId): array
     {
         $services = Salon::findOrFail($salonId)->services->all();

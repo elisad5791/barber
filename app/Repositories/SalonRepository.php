@@ -13,6 +13,12 @@ class SalonRepository implements SalonRepositoryInterface
         return $salons;
     }
 
+    public function fetchAllShort(): array
+    {
+        $salons = Salon::select(['id', 'title'])->get()->all();
+        return $salons;
+    }
+
     public function fetchById(int $salonId): Salon
     {
         $salon = Salon::findOrFail($salonId);

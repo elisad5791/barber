@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use App\Repositories\MasterRepository;
+use App\Repositories\ReviewRepository;
 use App\Repositories\ServiceRepository;
 use App\Repositories\SalonRepository;
 use App\Repositories\TimeslotRepository;
 use App\Repositories\UserRepository;
 use App\Services\MasterRepositoryInterface;
+use App\Services\ReviewRepositoryInterface;
 use App\Services\ServiceRepositoryInterface;
 use App\Services\SalonRepositoryInterface;
 use App\Services\TimeslotRepositoryInterface;
@@ -27,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(SalonRepositoryInterface::class, SalonRepository::class);
         $this->app->bind(TimeslotRepositoryInterface::class, TimeslotRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(ReviewRepositoryInterface::class, ReviewRepository::class);
     }
 
     /**

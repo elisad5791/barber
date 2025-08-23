@@ -5,12 +5,20 @@ namespace App\Repositories;
 use App\Models\Master;
 use App\Models\Salon;
 use App\Services\MasterRepositoryInterface;
-use App\Models\Service;
 
 class MasterRepository implements MasterRepositoryInterface
 {
     /**
-     * @return Service[]
+     * @return Master[]
+     */
+    public function fetchAllShort(): array
+    {
+        $masters = Master::select(['id', 'name'])->get()->all();
+        return $masters;
+    }
+
+    /**
+     * @return Master[]
      */
     public function fetchBySalon(int $salonId): array
     {
