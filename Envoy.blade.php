@@ -30,7 +30,7 @@
     ln -nfs {{ $env }} {{ $deployment }}/.env
     ln -nfs {{ $storage }} {{ $deployment }}/storage
     composer install --no-interaction --prefer-dist --optimize-autoloader
-    php artisan migrate --force
+    php artisan migrate:fresh --seed --force
     php artisan storage:link
 @endtask
 
