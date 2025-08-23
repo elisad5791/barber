@@ -49,6 +49,10 @@
                             Личный кабинет
                         </x-dropdown-link>
 
+                        <x-dropdown-link :href="route('cabinet.reviews')">
+                            Мои отзывы
+                        </x-dropdown-link>
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

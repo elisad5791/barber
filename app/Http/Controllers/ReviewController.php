@@ -10,6 +10,8 @@ use App\Services\UseCases\Queries\Services\FetchAllShort\Fetcher as ServiceFetch
 use App\Services\UseCases\Queries\Masters\FetchAllShort\Fetcher as MasterFetcher;
 use App\Services\UseCases\Commands\Review\Add\Command as ReviewCommand;
 use App\Services\UseCases\Commands\Review\Add\Handler as ReviewHandler;
+use App\Services\UseCases\Commands\Review\Delete\Command as DeleteReviewCommand;
+use App\Services\UseCases\Commands\Review\Delete\Handler as DeleteReviewHandler;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -21,7 +23,8 @@ class ReviewController extends Controller
         private SalonFetcher $salonFetcher,
         private ServiceFetcher $serviceFetcher,
         private MasterFetcher $masterFetcher,
-        private ReviewHandler $reviewHandler
+        private ReviewHandler $reviewHandler,
+        private DeleteReviewHandler $deleteReviewHandler,
     ) {}
 
     public function index(Request $request): View
@@ -55,5 +58,11 @@ class ReviewController extends Controller
         $this->reviewHandler->handle($command);
 
         return redirect()->route('reviews.index');
+    }
+
+    public function delete(int $reviewId): RedirectResponse
+    {
+        $this->deleteReviewHandler->handle(new DeleteReviewCommand($reviewId));
+        return redirect()->route('cabinet.reviews');
     }
 }

@@ -28,8 +28,27 @@ class ReviewRepository implements ReviewRepositoryInterface
         return $reviews;
     }
 
+    /**
+     * @return \App\Models\Review[]
+     */
+    public function fetchByClient(int $userId): array
+    {
+        $reviews = Review::with(['salon', 'service', 'master'])
+            ->where('user_id', $userId)
+            ->orderBy('created_at', 'desc')
+            ->get()->all();
+            
+        return $reviews;
+    }
+
     public function save(Review $review): void
     {
         $review->save();
+    }
+
+    public function delete(int $reviewId): void
+    {
+        $review = Review::findOrFail($reviewId);
+        $review->delete();
     }
 }

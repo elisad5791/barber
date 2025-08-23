@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/cabinet', [CabinetController::class, 'index'])->name('cabinet');
+    Route::get('/cabinet/reviews', [CabinetController::class, 'reviews'])->name('cabinet.reviews');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/dashboard/service', [DashboardController::class, 'storeService'])->name('dashboard.service.add');
@@ -43,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/timeslots/cancel', [TimeslotController::class, 'cancel'])->name('welcome.timeslots.cancel');
 
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::delete('/reviews/{reviewId}', [ReviewController::class, 'delete'])->name('reviews.delete');
 });
 
 require __DIR__.'/auth.php';
