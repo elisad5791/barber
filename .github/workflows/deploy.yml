@@ -17,4 +17,4 @@ jobs:
         password: ${{ secrets.SERVER_PASSWORD }}
         script: |
           cd /var/www/elisad-apps.ru
-          ~/.composer/vendor/bin/envoy run deploy
+          /root/.config/composer/vendor/bin/envoy run deploy
