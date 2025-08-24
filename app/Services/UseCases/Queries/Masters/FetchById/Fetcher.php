@@ -23,6 +23,7 @@ class Fetcher
             $master->name,
             $master->phone,
             $master->user->email,
+            $master->salon_id,
             $services
         );
 

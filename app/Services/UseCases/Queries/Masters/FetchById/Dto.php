@@ -9,6 +9,7 @@ class Dto
         public string $name,
         public string $phone,
         public string $email,
+        public int $salon_id,
         public array $services
     ) {}
 }

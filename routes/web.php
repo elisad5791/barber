@@ -12,8 +12,8 @@ use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
-Route::get('/salon/{salonId}', [WelcomeController::class, 'showSalon'])->name('welcome.salon');
-Route::get('/master/{masterId}', [WelcomeController::class, 'showMaster'])->name('welcome.master');
+Route::get('/salon/{salonId}', [WelcomeController::class, 'showSalon'])->name('welcome.salon')->middleware('salon-paid');
+Route::get('/master/{masterId}', [WelcomeController::class, 'showMaster'])->name('welcome.master')->middleware('master-salon-paid');
 
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
 

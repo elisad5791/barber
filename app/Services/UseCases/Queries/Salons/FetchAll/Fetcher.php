@@ -3,6 +3,7 @@
 namespace App\Services\UseCases\Queries\Salons\FetchAll;
 
 use App\Services\SalonRepositoryInterface;
+use Illuminate\Support\Carbon;
 
 class Fetcher
 {
@@ -16,9 +17,13 @@ class Fetcher
 
         $salons = [];
         foreach ($salonObjects as $salon) {
+            $paidUpto = $salon->paid_upto ? Carbon::parse($salon->paid_upto) : null;
+            $isPaid = $paidUpto && $paidUpto >= now();
+
             $salons[] = new Dto(
                 $salon->id,
                 $salon->user_id,
+                $isPaid,
                 $salon->title,
                 $salon->description,
                 $salon->services->all(),
