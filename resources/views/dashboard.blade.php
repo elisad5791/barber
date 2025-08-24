@@ -39,7 +39,7 @@
                                 <div>Период для оплаты: {{ $newPaidBegin }}-{{ $newPaidEnd }}</div>
                                 <div>Сумма к оплате: 500 руб. (платеж за 30 дней)</div>
                                 <div class="mt-2">
-                                    <a href="{{ route('pay') }}" class="btn btn-success">Оплатить</a>
+                                    <a href="{{ route('pay', $salonId) }}" class="btn btn-success">Оплатить</a>
                                 </div>
                             </div>
                         </div>

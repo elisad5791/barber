@@ -49,6 +49,7 @@ class DashboardController extends Controller
         $newPaidEnd = $newPaidBegin->copy()->addDays(29);
 
         return view('dashboard', [
+            'salonId' => $salon->id,
             'title' => $salon->title ?? 'Название не задано',
             'description' => $salon->description ?? 'Описание не задано',
             'services' => $services,
