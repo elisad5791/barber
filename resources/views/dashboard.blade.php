@@ -9,7 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+
                         <div class="card w-96 bg-base-100 shadow-sm">
                             <div class="card-body">
                                 <div class="flex justify-between">
@@ -26,6 +27,20 @@
                                         class="btn btn-success mt-2">Редактировать</a>
                                 </div>
                                 @endcan
+                            </div>
+                        </div>
+
+                        <div class="card w-96 bg-base-100 shadow-sm">
+                            <div class="card-body">
+                                <div class="flex justify-between">
+                                    <h2 class="text-2xl font-bold">Оплата</h2>
+                                </div>
+                                <div>Оплачено до: {{ $paidUpto }}</div>
+                                <div>Период для оплаты: {{ $newPaidBegin }}-{{ $newPaidEnd }}</div>
+                                <div>Сумма к оплате: 500 руб. (платеж за 30 дней)</div>
+                                <div class="mt-2">
+                                    <a href="{{ route('pay') }}" class="btn btn-success">Оплатить</a>
+                                </div>
                             </div>
                         </div>
 
@@ -115,6 +130,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

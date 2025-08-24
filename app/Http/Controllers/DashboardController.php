@@ -42,12 +42,21 @@ class DashboardController extends Controller
         $missingServices = $this->missingServiceFetcher->fetch(new MissingServiceQuery($salonId));
         $masters = $this->masterFetcher->fetch(new MasterQuery($salonId));
 
+        $paidUpto = $salon->paid_upto ? $salon->paid_upto->format('d.m.Y') : '-';
+        $newPaidBegin = $salon->paid_upto && $salon->paid_upto >= now() 
+            ? $salon->paid_upto->copy()->addDays(1) 
+            : now();
+        $newPaidEnd = $newPaidBegin->copy()->addDays(29);
+
         return view('dashboard', [
             'title' => $salon->title ?? 'Название не задано',
             'description' => $salon->description ?? 'Описание не задано',
             'services' => $services,
             'missingServices' => $missingServices,
             'masters' => $masters,
+            'paidUpto' => $paidUpto,
+            'newPaidBegin' => $newPaidBegin->format('d.m.Y'),
+            'newPaidEnd' => $newPaidEnd->format('d.m.Y')
         ]);
     }
 

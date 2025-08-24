@@ -3,6 +3,7 @@
 use App\Http\Controllers\CabinetController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MasterController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SalonController;
@@ -45,6 +46,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     Route::delete('/reviews/{reviewId}', [ReviewController::class, 'delete'])->name('reviews.delete');
+
+    Route::get('/payment', [PaymentController::class, 'store'])->name('pay');
 });
 
 require __DIR__.'/auth.php';

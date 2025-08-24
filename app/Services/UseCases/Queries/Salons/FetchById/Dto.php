@@ -11,6 +11,7 @@ class Dto
         public int $user_id,
         public ?string $title = null,
         public ?string $description = null,
+        public ?Carbon $paid_upto = null,
         public ?Carbon $created_at = null,
         public ?Carbon $updated_at = null,
     ) {}
