@@ -11,4 +11,10 @@ class PaymentRepository implements PaymentRepositoryInterface
     {
         $payment->save();
     }
+
+    public function fetchByUid(string $uid): Payment
+    {
+        $payment = Payment::where('uid', $uid)->first();
+        return $payment;
+    }
 }

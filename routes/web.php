@@ -19,6 +19,8 @@ Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index'
 
 Route::get('/timeslots/{masterId}', [TimeslotController::class, 'getTimeslots'])->name('dashboard.timeslots');
 
+Route::post('/notification', [App\Http\Controllers\PaymentController::class, 'update'])->name('notification');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
