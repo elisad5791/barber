@@ -11,13 +11,22 @@
                 </div>
 
                 <!-- Navigation Links -->
-                @can('edit dashboard')
+                @if (auth()->user()->hasRole('owner') || auth()->user()->hasRole('master'))
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             Панель управления
                         </x-nav-link>
                     </div>
-                @endcan
+                @endif
+
+                @if (auth()->user()->hasRole('admin'))
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('dashboard.admin')" :active="request()->routeIs('dashboard.admin')">
+                            Панель управления
+                        </x-nav-link>
+                    </div>
+                @endif
+
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')">
                         Сайт
@@ -53,11 +62,11 @@
                             Мои отзывы
                         </x-dropdown-link>
 
-                        @can('edit dashboard')
+                        @if (auth()->user()->hasRole('owner'))
                             <x-dropdown-link :href="route('cabinet.payments')">
                                 Мои платежи
                             </x-dropdown-link>
-                        @endcan
+                        @endif
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

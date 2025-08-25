@@ -2,6 +2,7 @@
     <div class="w-full max-w-[700px] mx-auto">
         <h1 class="text-4xl font-bold">Мои отзывы</h1>
         
+        @if ($reviews)
         <div>
             @foreach ($reviews as $review)
                 <div class="card w-full bg-base-100 card-md shadow-sm mt-4">
@@ -39,5 +40,8 @@
                 </div>
             @endforeach
         </div>
+        @else
+            <div class="mt-10">Пока нет отзывов</div>
+        @endif
     </div>
 </x-client-layout>

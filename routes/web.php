@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/dashboard/service', [DashboardController::class, 'storeService'])->name('dashboard.service.add');
+    Route::get('/dashboard/admin', [DashboardController::class, 'admin'])->name('dashboard.admin');
 
     Route::get('/dashboard/master/create', [MasterController::class, 'create'])->name('dashboard.master.create');
     Route::get('/dashboard/master/{masterId}', [MasterController::class, 'show'])->name('dashboard.master.show');

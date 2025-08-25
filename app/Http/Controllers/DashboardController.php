@@ -13,6 +13,7 @@ use App\Services\UseCases\Queries\Services\FetchMissingBySalon\Query as MissingS
 use App\Services\UseCases\Queries\Masters\FetchBySalon\Query as MasterQuery;
 use App\Services\UseCases\Queries\Salons\FetchById\Query as SalonQuery;
 use App\Services\UseCases\Commands\Salon\StoreService\Handler;
+use App\Services\UseCases\Queries\Salons\FetchAllWithTotal\Fetcher as SalonAdminFetcher;
 
 class DashboardController extends Controller
 {
@@ -21,7 +22,8 @@ class DashboardController extends Controller
         private MissingServiceFetcher $missingServiceFetcher,
         private MasterFetcher $masterFetcher,
         private SalonFetcher $salonFetcher,
-        private Handler $salonHandler
+        private Handler $salonHandler,
+        private SalonAdminFetcher $salonAdminFetcher
     ) {}
 
     public function index()
@@ -71,5 +73,11 @@ class DashboardController extends Controller
         $this->salonHandler->handle(new Command($salonId, $serviceId));
         
         return redirect()->route('dashboard');
+    }
+
+    public function admin()
+    {
+        $salons = $this->salonAdminFetcher->fetch();
+        return view('dashboard-admin', ['salons' => $salons]);
     }
 }

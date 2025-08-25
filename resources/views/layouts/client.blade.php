@@ -29,12 +29,19 @@
             </a>
 
             @auth
-                @can('see dashboard')
+                @if (auth()->user()->hasRole('owner') || auth()->user()->hasRole('master'))
                     <a href="{{ url('/dashboard') }}"
                         class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal text-nowrap">
                         Панель управления
                     </a>
-                @endcan
+                @endif
+
+                @if (auth()->user()->hasRole('admin'))
+                    <a href="{{ url('/dashboard/admin') }}"
+                        class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal text-nowrap">
+                        Панель управления
+                    </a>
+                @endif
 
                 <div class="sm:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">
@@ -67,11 +74,11 @@
                                 Мои отзывы
                             </x-dropdown-link>
 
-                            @can('edit dashboard')
+                            @if(auth()->user()->hasRole('owner'))
                                 <x-dropdown-link :href="route('cabinet.payments')">
                                     Мои платежи
                                 </x-dropdown-link>
-                            @endcan
+                            @endif
 
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

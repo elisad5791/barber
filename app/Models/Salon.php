@@ -25,4 +25,9 @@ class Salon extends Model
     {
         return $this->hasMany(Master::class);
     }
+
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

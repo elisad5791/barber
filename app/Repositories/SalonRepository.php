@@ -19,6 +19,12 @@ class SalonRepository implements SalonRepositoryInterface
         return $salons;
     }
 
+    public function fetchAllWithPayments(): array
+    {
+        $salons = Salon::with(['payments'])->get()->all();
+        return $salons;
+    }
+
     public function fetchById(int $salonId): Salon
     {
         $salon = Salon::findOrFail($salonId);
