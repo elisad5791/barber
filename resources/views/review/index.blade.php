@@ -120,7 +120,7 @@
                         <div class="card-body">
                             <h2 class="card-title">
                                 {{ $review->user_name }}
-                                <div class="badge font-normal">{{ $review->created_at->format('d.m.Y H:i') }} </div>
+                                <div class="badge font-normal" data-reviews-datetime="{{ $review->created_at->toAtomString() }}"></div>
                             </h2>
                             <p>{{ $review->content }}</p>
                             <div class="card-actions justify-end">

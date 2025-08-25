@@ -1,6 +1,6 @@
 <x-client-layout>
     <div class="w-full">
-        <h1 class="text-4xl font-bold">История бронирований</h1>
+        <h1 class="text-4xl font-bold">Мои бронирования</h1>
         
         @if ($timeslots)
             <table class="table-auto mt-10 border-collapse border border-gray-400 min-w-[950px]">
