@@ -60,12 +60,18 @@
                             </x-dropdown-link>
 
                             <x-dropdown-link :href="route('cabinet')">
-                                Личный кабинет
+                                Мои бронирования
                             </x-dropdown-link>
 
                             <x-dropdown-link :href="route('cabinet.reviews')">
                                 Мои отзывы
                             </x-dropdown-link>
+
+                            @can('edit dashboard')
+                                <x-dropdown-link :href="route('cabinet.payments')">
+                                    Мои платежи
+                                </x-dropdown-link>
+                            @endcan
 
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/cabinet', [CabinetController::class, 'index'])->name('cabinet');
     Route::get('/cabinet/reviews', [CabinetController::class, 'reviews'])->name('cabinet.reviews');
+    Route::get('/cabinet/payments', [CabinetController::class, 'payments'])->name('cabinet.payments');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/dashboard/service', [DashboardController::class, 'storeService'])->name('dashboard.service.add');

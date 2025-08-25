@@ -17,4 +17,12 @@ class PaymentRepository implements PaymentRepositoryInterface
         $payment = Payment::where('uid', $uid)->first();
         return $payment;
     }
+
+    public function fetchBySalon(int $salonId): array
+    {
+        $payments = Payment::where('salon_id', $salonId)
+            ->orderBy('id', 'desc')
+            ->get()->all();
+        return $payments;
+    }
 }

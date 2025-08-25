@@ -53,6 +53,12 @@
                             Мои отзывы
                         </x-dropdown-link>
 
+                        @can('edit dashboard')
+                            <x-dropdown-link :href="route('cabinet.payments')">
+                                Мои платежи
+                            </x-dropdown-link>
+                        @endcan
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
