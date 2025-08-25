@@ -40,11 +40,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 openEmptyModal.click();
             },
             eventClick: function (info) {
-                if (roleName != 'owner') {
-                    return;
+                if (deleteInput) {
+                    deleteInput.value = info.event.startStr;
                 }
-                
-                deleteInput.value = info.event.startStr;
                 slotDescription.textContent = info.event.title;
                 slotComment.textContent = info.event.extendedProps.comment;
                 openFullModal.click();

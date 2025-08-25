@@ -48,13 +48,16 @@
                     <button class="btn">Закрыть</button>
                 </form>
             </div>
-            <form action="{{ route('dashboard.timeslots.delete') }}" method="post">
-                @csrf
-                @method('delete')
-                <input type="hidden" name="start" id="delete_start" value="">
-                <input type="hidden" name="master_id" value="{{ $id }}">
-                <button class="btn btn-xs btn-secondary btn-soft">Удалить</button>
-            </form>
+            
+            @if ($roleName == 'owner')
+                <form action="{{ route('dashboard.timeslots.delete') }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <input type="hidden" name="start" id="delete_start" value="">
+                    <input type="hidden" name="master_id" value="{{ $id }}">
+                    <button class="btn btn-xs btn-secondary btn-soft">Удалить</button>
+                </form>
+            @endif
         </div>
     </div>
 </dialog>
